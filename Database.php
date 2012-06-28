@@ -660,7 +660,7 @@ class Database {
 	 * @param string $string to escape
 	 * @return void
 	 */
-	function escape_by_ref( &$string ) {
+	public function escape_by_ref( &$string ) {
 		$string = $this->_real_escape( $string );
 	}
 	
@@ -674,7 +674,7 @@ class Database {
 	 * @param  string $string to escape
 	 * @return string escaped
 	 */
-	private function _real_escape( $string ) {
+	public function _real_escape( $string ) {
 		if ( $this->real_escape ){
 			return $this->mysqli->real_escape_string( $string );
 		}	
