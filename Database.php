@@ -14,7 +14,9 @@
  * License for the specific language governing permissions and limitations
  * under the License.
  */
- 
+
+
+require 'jsonresponse.php';
 
 class Database {
 	
@@ -170,14 +172,6 @@ class Database {
 	 */
 	private $real_escape = false;
 	
-	/**
-	 * Count of affected rows by previous query
-	 *
-	 * @since 0.71
-	 * @access private
-	 * @var int
-	 */
-	public $rows_affected = 0;
 	
 	
 	/**
@@ -282,7 +276,7 @@ class Database {
 				$this->insert_id = $this->mysqli->insert_id;
 			}
 			// Return number of rows affected
-			$return_val = $this->rows_affected;
+			$return_val = $this->affected_rows;
 		} else {
 			$i = 0;
 			while ( $i < @$this->result->field_count ) {
@@ -660,7 +654,7 @@ class Database {
 	 * @param string $string to escape
 	 * @return void
 	 */
-	public function escape_by_ref( &$string ) {
+	function escape_by_ref( &$string ) {
 		$string = $this->_real_escape( $string );
 	}
 	
@@ -674,13 +668,20 @@ class Database {
 	 * @param  string $string to escape
 	 * @return string escaped
 	 */
-	public function _real_escape( $string ) {
+	private function _real_escape( $string ) {
 		if ( $this->real_escape ){
 			return $this->mysqli->real_escape_string( $string );
 		}	
 		else{
 			return addslashes( $string );
 		}
+	}
+	
+	/**
+	 * Return affected rows
+	 */
+	public function getAffectedRows(){
+		return $this->affected_rows;
 	}
 
 }
