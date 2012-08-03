@@ -16,8 +16,6 @@
  */
 
 
-require 'jsonresponse.php';
-
 class Database {
 	
 	/**
