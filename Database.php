@@ -683,7 +683,21 @@ class Database {
 	public function getAffectedRows(){
 		return $this->affected_rows;
 	}
+	
+	
+	/**
+	 * Set Charset
+	 */
+	public function setCharset( $string = "utf8" ){
+		$this->mysqli->set_charset('utf8');
+	}
 
+	/**
+	 * html encode
+	 */
+	public function html( $string ){
+		return htmlentities($string, ENT_QUOTES, "UTF-8");
+	}
 }
 
 ?>
