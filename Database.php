@@ -653,7 +653,7 @@ class Database {
 	 * @return void
 	 */
 	function escape_by_ref( &$string ) {
-		$string = $this->_real_escape( $string );
+		$string = $this->escape( $string );
 	}
 	
 	/**
