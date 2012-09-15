@@ -666,7 +666,7 @@ class Database {
 	 * @param  string $string to escape
 	 * @return string escaped
 	 */
-	private function _real_escape( $string ) {
+	private function escape( $string ) {
 		if ( $this->real_escape ){
 			return $this->mysqli->real_escape_string( $string );
 		}	
@@ -696,6 +696,13 @@ class Database {
 	public function html( $string ){
 		return htmlentities($string, ENT_QUOTES, "UTF-8");
 	}
+	
+	/**
+	 * Return insert_id
+	 */
+	public function getInsertId(){
+		return $this->insert_id;
+		}
 }
 
 ?>
