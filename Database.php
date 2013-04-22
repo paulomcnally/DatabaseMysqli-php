@@ -666,7 +666,7 @@ class Database {
 	 * @param  string $string to escape
 	 * @return string escaped
 	 */
-	private function escape( $string ) {
+	public function escape( $string ) {
 		if ( $this->real_escape ){
 			return $this->mysqli->real_escape_string( $string );
 		}	
